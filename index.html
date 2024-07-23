@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="modelosteve.css">
-    <link rel="icon" href="steveface.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modelosteve.css">
+    <link rel="icon" href="img/steveface.png">
     <title>Minecraft Skin editor</title>
 </head>
 
@@ -109,12 +109,12 @@
     <div class="botoes" id="buttonsDiv">
 
         <span class="botoes-gerais">
-            <div class="opcao botao" value="desenhar" onclick="desenhar()"><img src="pintar.svg" class="pinto"></div>
-            <div class="opcao botao" value="mover" onclick="mover()"><img src="rotacionar.svg"></div>
-            <div class="opcao botao" value="mover" onclick="balde()"><img class="balde" src="balde.svg"></div>
+            <div class="opcao botao" value="desenhar" onclick="desenhar()"><img src="img/pintar.svg" class="pinto"></div>
+            <div class="opcao botao" value="mover" onclick="mover()"><img src="img/rotacionar.svg"></div>
+            <div class="opcao botao" value="mover" onclick="balde()"><img class="balde" src="img/balde.svg"></div>
         </span>
         <input class="opcao cor" value="#7070FF" type="color" id="hex">
-        <a class="baixar-imagem" href="" id="baixar">Baixar Skin<img class="download" src="download.svg"></a>
+        <a class="baixar-imagem" href="" id="baixar">Baixar Skin<img class="download" src="img/download.svg"></a>
         <div id="partes-botoes" class="partes-botoes">
             <div id="cabeca-botao" class="cabeca-botao icon" onclick="membroButton('cabeca')"></div>
             <div id="bracoesquerdo-botao" class="bracoesquerdo-botao icon" onclick="membroButton('bracoesquerdo')"></div>
@@ -125,7 +125,7 @@
         </div>
         <div class="opcao botao escondercamada" onclick="mostrarcamada()">Second Layer</div>
         <div class="opcao botao arquivo" onclick="clicarArquivo()">
-            <p class="texto"><img class="download" src="upload.svg">Alterar Skin</p>
+            <p class="texto"><img class="download" src="img/upload.svg">Alterar Skin</p>
         <input class="input-arquivo" type="file" onchange="adicionarSkin()" id="skinarquivo">
         </div>
     </div>
