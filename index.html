@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modelosteve.css">
+    <link rel="icon" href="steveface.png">
+    <title>Minecraft Skin editor</title>
+</head>
+
+<body>
+
+    <div class="modelocontainer">
+        <div class="containermodel">
+
+            <div class="fullbody" id="corpo">
+                <div class="cabeca" id="cabeca">
+                    <canvas class="s1 first layer" id="s1"></canvas>
+                    <canvas class="s2 first layer" id="s2"></canvas>
+                    <canvas class="s3 first layer" id="s3"></canvas>
+                    <canvas class="s4 first layer" id="s4"></canvas>
+                    <canvas class="s5 first layer" id="s5"></canvas>
+                    <canvas class="s6 first layer" id="s6"></canvas>
+                    <canvas class="s37 second layer" id=""></canvas>
+                    <canvas class="s38 second layer" id=""></canvas>
+                    <canvas class="s39 second layer" id=""></canvas>
+                    <canvas class="s40 second layer" id=""></canvas>
+                    <canvas class="s41 second layer" id=""></canvas>
+                    <canvas class="s42 second layer" id=""></canvas>
+                </div>
+                <div id="torso" class="torso">
+                    <canvas class="s7 first layer" id="s7"></canvas>
+                    <canvas class="s8 first layer" id="s8"></canvas>
+                    <canvas class="s9 first layer" id="s9"></canvas>
+                    <canvas class="s10 first layer" id="s10"></canvas>
+                    <canvas class="s11 first layer" id="s11"></canvas>
+                    <canvas class="s12 first layer" id="s12"></canvas>
+                    <canvas class="s43 second layer" id=""></canvas>
+                    <canvas class="s44 second layer" id=""></canvas>
+                    <canvas class="s45 second layer" id=""></canvas>
+                    <canvas class="s46 second layer" id=""></canvas>
+                    <canvas class="s47 second layer" id=""></canvas>
+                    <canvas class="s48 second layer" id=""></canvas>
+                </div>
+                <div id="pernadireita" class="perna direitasteve">
+                    <canvas class="s13 first layer" id="s13"></canvas>
+                    <canvas class="s14 first layer" id="s14"></canvas>
+                    <canvas class="s15 first layer" id="s15"></canvas>
+                    <canvas class="s16 first layer" id="s16"></canvas>
+                    <canvas class="s17 first layer" id="s17"></canvas>
+                    <canvas class="s18 first layer" id="s18"></canvas>
+                    <canvas class="s49 second layer" id=""></canvas>
+                    <canvas class="s50 second layer" id=""></canvas>
+                    <canvas class="s51 second layer" id=""></canvas>
+                    <canvas class="s52 second layer" id=""></canvas>
+                    <canvas class="s53 second layer" id=""></canvas>
+                    <canvas class="s54 second layer" id=""></canvas>
+                </div>
+                <div id="pernaesquerda" class="perna esquerdasteve">
+                    <canvas class="s19 first layer" id="s19"></canvas>
+                    <canvas class="s20 first layer" id="s20"></canvas>
+                    <canvas class="s21 first layer" id="s21"></canvas>
+                    <canvas class="s22 first layer" id="s22"></canvas>
+                    <canvas class="s23 first layer" id="s23"></canvas>
+                    <canvas class="s24 first layer" id="s24"></canvas>
+                    <canvas class="s55 second layer" id=""></canvas>
+                    <canvas class="s56 second layer" id=""></canvas>
+                    <canvas class="s57 second layer" id=""></canvas>
+                    <canvas class="s58 second layer" id=""></canvas>
+                    <canvas class="s59 second layer" id=""></canvas>
+                    <canvas class="s60 second layer" id=""></canvas>
+                </div>
+                <div id="bracodireito" class="braco direitosteve">
+                    <canvas class="s25 first layer" id="s25"></canvas>
+                    <canvas class="s26 first layer" id="s26"></canvas>
+                    <canvas class="s27 first layer" id="s27"></canvas>
+                    <canvas class="s28 first layer" id="s28"></canvas>
+                    <canvas class="s29 first layer" id="s29"></canvas>
+                    <canvas class="s30 first layer" id="s30"></canvas>
+                    <canvas class="s61 second layer" id=""></canvas>
+                    <canvas class="s62 second layer" id=""></canvas>
+                    <canvas class="s63 second layer" id=""></canvas>
+                    <canvas class="s64 second layer" id=""></canvas>
+                    <canvas class="s65 second layer" id=""></canvas>
+                    <canvas class="s66 second layer" id=""></canvas>
+                </div>
+                <div id="bracoesquerdo" class="braco esquerdosteve">
+                    <canvas class="s31 first layer" id="s31"></canvas>
+                    <canvas class="s32 first layer" id="s32"></canvas>
+                    <canvas class="s33 first layer" id="s33"></canvas>
+                    <canvas class="s34 first layer" id="s34"></canvas>
+                    <canvas class="s35 first layer" id="s35"></canvas>
+                    <canvas class="s36 first layer" id="s36"></canvas>
+                    <canvas class="s67 second layer" id=""></canvas>
+                    <canvas class="s68 second layer" id=""></canvas>
+                    <canvas class="s69 second layer" id=""></canvas>
+                    <canvas class="s70 second layer" id=""></canvas>
+                    <canvas class="s71 second layer" id=""></canvas>
+                    <canvas class="s72 second layer" id=""></canvas>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="botoes" id="buttonsDiv">
+
+        <span class="botoes-gerais">
+            <div class="opcao botao" value="desenhar" onclick="desenhar()"><img src="pintar.svg" class="pinto"></div>
+            <div class="opcao botao" value="mover" onclick="mover()"><img src="rotacionar.svg"></div>
+            <div class="opcao botao" value="mover" onclick="balde()"><img class="balde" src="balde.svg"></div>
+        </span>
+        <input class="opcao cor" value="#7070FF" type="color" id="hex">
+        <a class="baixar-imagem" href="" id="baixar">Baixar Skin<img class="download" src="download.svg"></a>
+        <div id="partes-botoes" class="partes-botoes">
+            <div id="cabeca-botao" class="cabeca-botao icon" onclick="membroButton('cabeca')"></div>
+            <div id="bracoesquerdo-botao" class="bracoesquerdo-botao icon" onclick="membroButton('bracoesquerdo')"></div>
+            <div id="torso-botao" class="torso-botao icon" onclick="membroButton('torso')"></div>
+            <div id="bracodireito-botao" class="bracodireito-botao icon" onclick="membroButton('bracodireito')"></div>
+            <div id="pernaesquerda-botao" class="pernaesquerda-botao icon" onclick="membroButton('pernaesquerda')"></div>
+            <div id="pernadireita-botao" class="pernadireita-botao icon" onclick="membroButton('pernadireita')"></div>
+        </div>
+        <div class="opcao botao escondercamada" onclick="mostrarcamada()">Second Layer</div>
+        <div class="opcao botao arquivo" onclick="clicarArquivo()">
+            <p class="texto"><img class="download" src="upload.svg">Alterar Skin</p>
+        <input class="input-arquivo" type="file" onchange="adicionarSkin()" id="skinarquivo">
+        </div>
+    </div>
+
+    <script src="model.js"></script>
+</body>
+
+</html>
