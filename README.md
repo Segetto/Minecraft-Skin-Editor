@@ -1,4 +1,4 @@
 # Minecraft-Skin-Editor
-Simple Skin Editor for Minecraft
+Editor de skins simples para o jogo Minecraft
 
-This project only works while in a server. I used XAMPP, feel free to use whatever other you want.
+Este projeto só funciona em um servidor. Usei o XAMPP, fique a vontade para usar o que você achar mais adequado.
