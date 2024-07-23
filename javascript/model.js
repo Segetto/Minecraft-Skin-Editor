@@ -9,7 +9,7 @@ let facesTorso = document.getElementById("torso").getElementsByClassName("layer"
 let facesBracoDireiro = document.getElementById("bracodireito").getElementsByClassName("layer");
 let facesPernaEsquerda = document.getElementById("pernaesquerda").getElementsByClassName("layer");
 let facesPernaDireita = document.getElementById("pernadireita").getElementsByClassName("layer");
-let imagemFonte = "../img/Steve.png"
+let imagemFonte = "img/Steve.png"
 
 let showSecondLayer = true;
 let mouseX = 0;
