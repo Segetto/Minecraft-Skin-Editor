@@ -9,9 +9,11 @@ let facesTorso = document.getElementById("torso").getElementsByClassName("layer"
 let facesBracoDireiro = document.getElementById("bracodireito").getElementsByClassName("layer");
 let facesPernaEsquerda = document.getElementById("pernaesquerda").getElementsByClassName("layer");
 let facesPernaDireita = document.getElementById("pernadireita").getElementsByClassName("layer");
-let imagemFonte = "img/Steve.png"
+let imagemFonte = "img/Steve.png";
+let borrachaTrue = false;
 
 let showSecondLayer = true;
+let over = false;
 let mouseX = 0;
 let mouseY = 0;
 let cubeX = corpoRect.left + corpoRect.width / 2;
@@ -39,6 +41,9 @@ let skinEnviada;
 function clicarArquivo(){
     fileInput.click();
 }
+
+
+
 
 imgSkinNew.width = 64;
 imgSkinNew.height = 64;
@@ -85,11 +90,22 @@ function mover() {
     botaoDesenhar = false;
     baldeCor = false;
     botaoMover = true;
+    borrachaTrue = false;
     document.documentElement.style.cursor = "grab";
+    
 
 }
 
+function borracha(){
+    borrachaTrue = true;
+    baldeCor = false;
+    botaoMover = false;
+    botaoDesenhar = true;
+    document.documentElement.style.cursor = "crosshair";
+}
+
 function desenhar() {
+    borrachaTrue = false;
     baldeCor = false;
     botaoMover = false;
     botaoDesenhar = true;
@@ -97,6 +113,7 @@ function desenhar() {
 }
 
 function balde() {
+    borrachaTrue = false;
     baldeCor = true;
     botaoMover = false;
     botaoDesenhar = true;
@@ -108,7 +125,7 @@ function updateMouse(event) {
     mouseX = event.clientX - corpoRect.left;
     mouseY = event.clientY - corpoRect.top;
 
-    if (isMouseDown && botaoMover) {
+    if (isMouseDown && botaoMover && over) {
         const dx = mouseX - cubeX;
         const dy = mouseY - cubeY;
 
@@ -128,6 +145,9 @@ function updateMouse(event) {
 function mostrarcamada() {
     if (showSecondLayer == true) {
         showSecondLayer = false;
+        Array.from(document.getElementsByClassName("icon")).forEach(icone => {
+            icone.style.borderStyle = 'none';
+        })
         Array.from(secondLayer).forEach(layer => {
             layer.style.visibility = 'hidden';
             layer.style.opacity = '0';
@@ -135,6 +155,9 @@ function mostrarcamada() {
     }
     else {
         showSecondLayer = true;
+        Array.from(document.getElementsByClassName("icon")).forEach(icone => {
+            icone.style.borderStyle = 'solid';
+        })
         Array.from(secondLayer).forEach(layer => {
             layer.style.visibility = 'visible';
             layer.style.opacity = '1';
@@ -149,6 +172,12 @@ document.addEventListener('mousedown', function (event) {
     }
 
 
+});
+document.getElementsByClassName('botoes')[0].addEventListener('mouseover', () => {
+    over = false;
+});
+document.getElementsByClassName('botoes')[0].addEventListener('mouseleave', () => {
+    over = true;
 });
 
 document.addEventListener('mouseup', function () {
@@ -278,8 +307,8 @@ Array.from(canvases).forEach(canvas => {
 
 function mudarCor(canvas, posx, posy) {
     let cor = document.getElementById("hex").value;
-    if (cor === "") {
-        cor = "#000000";
+    if (cor === "" || showSecondLayer == false && borrachaTrue == true) {
+        cor = "#FFFFFF";
     }
     const ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
@@ -299,11 +328,14 @@ function mudarCor(canvas, posx, posy) {
     const roundedPosX = Math.round(((posx - tamanhoX / 12) * relPosWidth / 1.075) / tamanhoX) * tamanhoX;
     const roundedPosY = Math.round(((posy - tamanhoY / 6) * relPosHeight / 2.15) / tamanhoY) * tamanhoY;
 
-    if (baldeCor == false) {
-        ctx.fillRect(roundedPosX, roundedPosY, tamanhoX, tamanhoY);
+    if (baldeCor == true) {
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    else if(borrachaTrue == true && showSecondLayer == true){
+        ctx.clearRect(roundedPosX, roundedPosY, tamanhoX, tamanhoY);
     }
     else {
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(roundedPosX, roundedPosY, tamanhoX, tamanhoY);
     }
 
 
