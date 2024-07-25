@@ -25,7 +25,7 @@
     perspective: var(--skin);
     margin: calc(var(--skin)*0.3125);
     display: flex;
-    margin-top: 240px;
+    margin-top: 480px;
   }
 
  .torso{
@@ -37,6 +37,9 @@
  .esquerdasteve > canvas{
   left: calc(var(--cabeca)/2);
   
+}
+.fullbody > div{
+  translate: 0 calc(var(--skin)/-7);;
 }
  .perna{
   transform: translateY(250%);
@@ -96,11 +99,11 @@
     width: var(--cabeca);
     background-size: var(--skin);
     image-rendering: pixelated;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
-    transform-style: preserve-3d;
+    transform-style: preserve-3d !important;
   } 
   .esquerdasteve > .second{
     translate: calc(var(--cabeca)*-0.075) calc(var(--cabeca)*-0.05);

@@ -7,6 +7,9 @@ body {
   justify-content: center;
   align-items: center;
   top: 50px;
+  border-style: solid;
+  border-color: #333 #ccc #aaa #444;
+  border-width: 7px;
   left: 12px;
   display: flex;
   flex-direction: column;
@@ -149,7 +152,6 @@ body {
   border: none;
   border-radius: 50%;
   padding: 0;
-
 }
 
 .download {
