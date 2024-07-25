@@ -281,9 +281,8 @@ Array.from(canvases).forEach(canvas => {
     canvas.addEventListener('mousedown', function (event) {
         if (botaoDesenhar) {
             isMouseDown = true;
-            const rect = canvas.getBoundingClientRect();
-            mouseX = event.clientX - rect.left;
-            mouseY = event.clientY - rect.top;
+            mouseX = event.offsetX;
+            mouseY = event.offsetY;
             mudarCor(canvas, mouseX, mouseY);
         }
 
@@ -291,9 +290,8 @@ Array.from(canvases).forEach(canvas => {
 
     canvas.addEventListener('mousemove', function (event) {
         if (isMouseDown && botaoDesenhar) {
-            const rect = canvas.getBoundingClientRect();
-            mouseX = event.clientX - rect.left;
-            mouseY = event.clientY - rect.top;
+            mouseX = event.offsetX;
+            mouseY = event.offsetY;
             mudarCor(canvas, mouseX, mouseY);
         }
     });
