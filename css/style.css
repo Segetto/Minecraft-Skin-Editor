@@ -1,5 +1,11 @@
+html{
+  height: 100%;
+}
 body {
-  background-color: #000;
+  background-image: linear-gradient(to top, #2b0606 30%, #000000 80%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom; /* Adiciona centralização da imagem, se necessário */
 }
 
 .botoes {
@@ -13,7 +19,7 @@ body {
   left: 12px;
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 200px;
   padding: 6px;
   background-color: #777;
   height: 546px;
@@ -39,10 +45,11 @@ body {
   color: #fff;
   position: relative;
   padding: 5px;
-
+  margin: 10px;
 }
 .opcao{
-  margin: 2px;
+  margin: 7px;
+
 }
 .escondercamada {
   margin-top: 0px;

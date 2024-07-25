@@ -198,9 +198,12 @@ function membroButton(id) {
     Array.from(membro).forEach(faces => {
         if (invisivel == true) {
             faces.style.opacity = 0;
+            faces.style.visibility = 'hidden';
+            faces.style.zIndex = '0';
             document.getElementById(id + "-botao").style.backgroundColor = "#F33";
         } else {
             faces.style.opacity = 1;
+            faces.style.visibility = 'visible';
             document.getElementById(id + "-botao").style.backgroundColor = "#3F3";
         }
     });

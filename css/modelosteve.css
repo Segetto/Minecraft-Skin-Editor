@@ -8,16 +8,13 @@
 
 .modelocontainer {
     margin: 3px;
-    background: var(--escuro2);
     height: 167px;
     width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    border: solid;
     width: 100%;
-    border-color: #000;
     border-width: 1px;
   }
   
@@ -39,7 +36,7 @@
   
 }
 .fullbody > div{
-  translate: 0 calc(var(--skin)/-7);;
+  translate: calc(var(--skin)/-17) calc(var(--skin)/-7);
 }
  .perna{
   transform: translateY(250%);
@@ -83,6 +80,7 @@
     height: var(--cabeca);
     transform-style: preserve-3d;
     z-index: 1;
+
   }
   .torso > canvas{
     height: calc(var(--cabeca)*1.5);
@@ -91,9 +89,13 @@
   .fullbody > div, .fullbody{
     height: var(--cabeca);
     position: absolute;
-    width: var(--cabeca);
+    width: 0;
+    z-index: -2;
+ 
+
   }
   .layer{
+    z-index: 1;
     height: var(--cabeca);
     position: absolute;
     width: var(--cabeca);
