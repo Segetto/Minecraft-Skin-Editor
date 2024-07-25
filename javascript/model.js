@@ -189,6 +189,7 @@ document.addEventListener('mouseup', function () {
     }
 });
 
+
 function membroButton(id) {
     let membro = document.getElementById(id).getElementsByClassName("layer");
     let invisivel = true;
