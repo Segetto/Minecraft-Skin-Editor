@@ -6,7 +6,7 @@ const secondLayer = document.getElementsByClassName("second");
 let facesCabeca = document.getElementById("cabeca").getElementsByClassName("layer");
 let facesBracoEsquerdo = document.getElementById("bracoesquerdo").getElementsByClassName("layer");
 let facesTorso = document.getElementById("torso").getElementsByClassName("layer");
-let facesBracoDireiro = document.getElementById("bracodireito").getElementsByClassName("layer");
+let facesBracoDireito = document.getElementById("bracodireito").getElementsByClassName("layer");
 let facesPernaEsquerda = document.getElementById("pernaesquerda").getElementsByClassName("layer");
 let facesPernaDireita = document.getElementById("pernadireita").getElementsByClassName("layer");
 let imagemFonte = "img/Steve.png";
@@ -16,9 +16,15 @@ let showSecondLayer = true;
 let over = false;
 let mouseX = 0;
 let mouseY = 0;
+let mouseXBefore = 0;
+let mouseYBefore = 0;
+let mouseXAfter = 0;
+let mouseYAfter = 0;
+let movX = 0;
+let movY = 0;
 let cubeX = corpoRect.left + corpoRect.width / 2;
 let cubeY = corpoRect.top + corpoRect.height / 2;
-let easing = 0.25;
+let easing = 10; 
 let isMouseDown = false;
 let botaoMover = false;
 let botaoDesenhar = false;
@@ -31,19 +37,16 @@ let tamanhoComputado;
 let imgSkinNew = document.createElement("canvas");
 let cabecaInvisivel = false;
 let torsoInvisivel = false;
-let bracoDireiroInvisivel = false;
+let bracoDireitoInvisivel = false;
 let bracoEsquerdoInvisivel = false;
 let pernaEsquerdaInvisivel = false;
 let pernaDireitaInvisivel = false;
 const fileInput = document.getElementById('skinarquivo')
 let skinEnviada;
 
-function clicarArquivo(){
+function clicarArquivo() {
     fileInput.click();
 }
-
-
-
 
 imgSkinNew.width = 64;
 imgSkinNew.height = 64;
@@ -53,10 +56,10 @@ function adicionarSkin() {
     skinEnviada = fileInput.files[0];
 
     const reader = new FileReader();
-    reader.onload = function(event) {
-        imagemFonte = event.target.result; // Obtém a URL de dados do arquivo
+    reader.onload = function (event) {
+        imagemFonte = event.target.result; 
 
-        novaskin.onload = function() {
+        novaskin.onload = function () {
             const skinnew = imgSkinNew.getContext('2d');
             skinnew.clearRect(0, 0, imgSkinNew.width, imgSkinNew.height);
             skinnew.drawImage(novaskin, 0, 0);
@@ -66,17 +69,16 @@ function adicionarSkin() {
             trocarSkin();
         };
 
-        novaskin.src = imagemFonte; // Define o src da imagem para a URL de dados
+        novaskin.src = imagemFonte; 
     };
 
-    reader.readAsDataURL(skinEnviada); // Lê o conteúdo do arquivo como uma URL de dados
+    reader.readAsDataURL(skinEnviada); 
 }
-
 
 let skin = new Image();
 skin.src = imagemFonte;
 const skinImg = imgSkinNew.getContext('2d');
-skinImg.drawImage(skin, 0, 0)
+skinImg.drawImage(skin, 0, 0);
 
 var imageIn = imgSkinNew.toDataURL('image/png');
 
@@ -92,11 +94,9 @@ function mover() {
     botaoMover = true;
     borrachaTrue = false;
     document.documentElement.style.cursor = "grab";
-    
-
 }
 
-function borracha(){
+function borracha() {
     borrachaTrue = true;
     baldeCor = false;
     botaoMover = false;
@@ -121,24 +121,24 @@ function balde() {
 }
 
 function updateMouse(event) {
-    corpoRect = corpo.getBoundingClientRect();
-    mouseX = event.clientX - corpoRect.left;
-    mouseY = event.clientY - corpoRect.top;
+    mouseX = event.clientX;
+    mouseY = event.clientY;
 
     if (isMouseDown && botaoMover && over) {
-        const dx = mouseX - cubeX;
-        const dy = mouseY - cubeY;
+        
+        let targetXRotation = corpoXRotation + (mouseY - mouseYBefore) * 0.1;
+        let targetYRotation = corpoYRotation + (mouseX - mouseXBefore) * 0.1;
 
-        cubeX += dx * easing;
-        cubeY += dy * easing;
+        
+        corpoXRotation += (targetXRotation - corpoXRotation) * easing;
+        corpoYRotation += (targetYRotation - corpoYRotation) * easing;
+        
+        
+        corpo.style.transform = `rotateX(${-corpoXRotation}deg) rotateY(${corpoYRotation}deg)`;
 
-        corpoYRotation += dx * 0.2;
-        corpoXRotation -= dy * 0.2;
-
-        corpoXRotation = corpoXRotation;
-        corpoYRotation = corpoYRotation;
-
-        corpo.style.transform = `rotateX(${corpoXRotation}deg) rotateY(${corpoYRotation}deg)`;
+        
+        mouseXBefore = mouseX;
+        mouseYBefore = mouseY;
     }
 }
 
@@ -147,32 +147,32 @@ function mostrarcamada() {
         showSecondLayer = false;
         Array.from(document.getElementsByClassName("icon")).forEach(icone => {
             icone.style.borderStyle = 'none';
-        })
+        });
         Array.from(secondLayer).forEach(layer => {
             layer.style.visibility = 'hidden';
             layer.style.opacity = '0';
-        })
-    }
-    else {
+        });
+    } else {
         showSecondLayer = true;
         Array.from(document.getElementsByClassName("icon")).forEach(icone => {
             icone.style.borderStyle = 'solid';
-        })
+        });
         Array.from(secondLayer).forEach(layer => {
             layer.style.visibility = 'visible';
             layer.style.opacity = '1';
-        })
+        });
     }
 }
 
 document.addEventListener('mousedown', function (event) {
+    mouseXBefore = mouseX;
+    mouseYBefore = mouseY;
     isMouseDown = true;
     if (botaoMover) {
         document.documentElement.style.cursor = "grabbing";
     }
-
-
 });
+
 document.getElementsByClassName('botoes')[0].addEventListener('mouseover', () => {
     over = false;
 });
@@ -181,35 +181,35 @@ document.getElementsByClassName('botoes')[0].addEventListener('mouseleave', () =
 });
 
 document.addEventListener('mouseup', function () {
+    mouseXAfter = movX;
+    mouseYAfter = movY;
     isMouseDown = false;
     if (botaoMover) {
         document.documentElement.style.cursor = "grab";
     }
-
 });
 
 function membroButton(id) {
-    membro = document.getElementById(id).getElementsByClassName("layer");
+    let membro = document.getElementById(id).getElementsByClassName("layer");
     let invisivel = true;
-    if(membro[0].style.opacity && membro[0].style.opacity == 0){
+    if (membro[0].style.opacity && membro[0].style.opacity == 0) {
         invisivel = false;
     }
     Array.from(membro).forEach(faces => {
-
         if (invisivel == true) {
             faces.style.opacity = 0;
-            document.getElementById(id+"-botao").style.backgroundColor = "#F33";
-        }
-        else {
+            document.getElementById(id + "-botao").style.backgroundColor = "#F33";
+        } else {
             faces.style.opacity = 1;
-            document.getElementById(id+"-botao").style.backgroundColor = "#3F3"
+            document.getElementById(id + "-botao").style.backgroundColor = "#3F3";
         }
-    })
+    });
 }
 
 function ajustarValor(valor) {
     return valor === 64 ? 0 : valor;
 }
+
 function trocarSkin() {
     Array.from(canvases).forEach(canvas => {
         const img = new Image();
@@ -252,8 +252,6 @@ Array.from(canvases).forEach(canvas => {
         const imagemSteve = tamanhoComputado.getPropertyValue('background-size').replace('px', '');
         ctximage.imageSmoothingEnabled = false;
 
-
-
         let posX = Math.round(64 * ((imagemSteve - tamanhoComputado.getPropertyValue('background-position-x').replace('px', '')) / imagemSteve));
         let posY = Math.round(64 * ((imagemSteve - tamanhoComputado.getPropertyValue('background-position-y').replace('px', '')) / imagemSteve));
         let scaleX = Math.round(64 * ((tamanhoComputado.getPropertyValue('width').replace('px', '')) / imagemSteve));
@@ -273,8 +271,6 @@ Array.from(canvases).forEach(canvas => {
             Math.round(canvas.width),
             Math.round(canvas.height)
         );
-
-
     });
     img.src = imagemFonte;
 
@@ -285,7 +281,6 @@ Array.from(canvases).forEach(canvas => {
             mouseY = event.offsetY;
             mudarCor(canvas, mouseX, mouseY);
         }
-
     });
 
     canvas.addEventListener('mousemove', function (event) {
@@ -299,9 +294,7 @@ Array.from(canvases).forEach(canvas => {
     canvas.addEventListener('mouseup', function () {
         isMouseDown = false;
     });
-
 });
-
 
 function mudarCor(canvas, posx, posy) {
     let cor = document.getElementById("hex").value;
@@ -328,23 +321,17 @@ function mudarCor(canvas, posx, posy) {
 
     if (baldeCor == true) {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-    else if(borrachaTrue == true && showSecondLayer == true){
+    } else if (borrachaTrue == true && showSecondLayer == true) {
         ctx.clearRect(roundedPosX, roundedPosY, tamanhoX, tamanhoY);
-    }
-    else {
+    } else {
         ctx.fillRect(roundedPosX, roundedPosY, tamanhoX, tamanhoY);
     }
 
-
-
     const ctxSkin = imgSkinNew.getContext('2d');
-
     ctxSkin.drawImage(skin, ctxSkin.width, ctxSkin.height);
 
     const imagemSteve = estiloComputado.getPropertyValue('background-size').replace('px', '');
     ctxSkin.imageSmoothingEnabled = false;
-
 
     let posXCanvas = Math.round(64 * ((imagemSteve - estiloComputado.getPropertyValue('background-position-x').replace('px', '')) / imagemSteve));
     let posYCanvas = Math.round(64 * ((imagemSteve - estiloComputado.getPropertyValue('background-position-y').replace('px', '')) / imagemSteve));
