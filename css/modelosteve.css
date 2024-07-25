@@ -25,7 +25,7 @@
     perspective: var(--skin);
     margin: calc(var(--skin)*0.3125);
     display: flex;
-    margin-top: 480px;
+    margin-top: 560px;
   }
 
  .torso{
